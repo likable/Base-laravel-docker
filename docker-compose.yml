@@ -26,10 +26,12 @@ services:
     image: mysql:8.0
     restart: always
     volumes:
-      - ./docker/tmp/mysql:/var/lib/mysql
+      - ./docker/.data/mysql:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: projectname
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
     ports:
       - "3306:3306"
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
